@@ -3,6 +3,88 @@ package WordList;
 # DATE
 # VERSION
 
+use strict 'subs', 'vars';
+
+sub new {
+    my $class = shift;
+    unless (defined ${"$class\::DATA_POS"}) {
+        ${"$class\::DATA_POS"} = tell *{"$class\::DATA"};
+    }
+    bless [], $class;
+}
+
+sub each_word {
+    my ($self, $code) = @_;
+
+    my $class = ref($self);
+
+    my $fh = \*{"$class\::DATA"};
+
+    seek $fh, ${"$class\::DATA_POS"}, 0;
+    while (defined(my $word = <$fh>)) {
+        chomp $word;
+        $code->($word);
+    }
+}
+
+sub pick {
+    my ($self, $n) = @_;
+
+    $n ||= 1;
+
+    my $class = ref($self);
+
+    my $fh = \*{"$class\::DATA"};
+
+    seek $fh, ${"$class\::DATA_POS"}, 0;
+    if ($n < 1) {
+        die "Please specify a positive number of words to pick";
+    } elsif ($n == 1) {
+        # use algorithm from Learning Perl
+        my $word;
+        my $i = 0;
+        while (defined(my $line = <$fh>)) {
+            $i++;
+            $word = $line if rand($i) < 1;
+        }
+        chomp($word);
+        return $word;
+    } else {
+        my @words;
+        my $i = 0;
+        while (defined(my $line = <$fh>)) {
+            $i++;
+            if (@words < $n) {
+                # we haven't reached $n, put word to result in a random position
+                splice @words, rand(@words+1), 0, $line;
+            } else {
+                # we have reached $n, just replace a word randomly, using
+                # algorithm from Learning Perl, slightly modified
+                rand($i) < @words and splice @words, rand(@words), 1, $line;
+            }
+        }
+        chomp(@words);
+        return @words;
+    }
+}
+
+sub word_exists {
+    my ($self, $word) = @_;
+
+    my $class = ref($self);
+
+    my $fh = \*{"$class\::DATA"};
+
+    seek $fh, ${"$class\::DATA_POS"}, 0;
+    while (defined(my $line = <$fh>)) {
+        chomp $line;
+        if ($word eq $line) {
+            return 1;
+        }
+    }
+    0;
+}
+
 1;
 # ABSTRACT: Word lists
 
@@ -35,19 +117,67 @@ Games::Word::Wordlist, I also make some other changes:
 
 =over
 
-=item * The interface is (currently) simpler
+=item * Namespace is put outside C<Games::>
+
+Because obviously word lists are not only useful for games.
+
+=item * Interface is simpler
 
 The methods provided are just:
 
-C<pick> (pick one or several random entries)
+- C<pick> (pick one or several random entries)
 
-C<is_word> (check whether a word is in the list)
+- C<word_exists> (check whether a word is in the list)
 
-C<each_word> (run code for each entry),
+- C<each_word> (run code for each entry)
 
-=item * The namespace is more language-neutral and not English-centric
+A couple of other functions might be added, with careful consideration.
+
+=item * Namespace is more language-neutral and not English-centric
 
 =back
+
+
+TODOS:
+
+=over
+
+=item * Interface for random pick from a subset
+
+Pick $n words of length $L.
+
+Pick $n words matching regex $re.
+
+=item * Interface to enable faster lookup/caching
+
+=back
+
+
+=head1 METHODS
+
+=head2 new()
+
+Constructor
+
+=head2 $wl->each_word($code)
+
+Call C<$code> for each word in the list. The code will receive the word as its
+first argument.
+
+=head2 pick($n = 1) => list
+
+Pick C<$n> (default: 1) random words from the list. If there are less then C<$n>
+words in the list, only that many will be returned.
+
+The algorithm used is from perlfaq ("perldoc -q "random line""), which scans the
+whole list once. The algorithm is for returning a single entry and is modified
+to support returning multiple entries.
+
+=head2 word_exists($word) => bool
+
+Check whether C<$word> is in the list.
+
+Algorithm is binary search (NOTE: not yet implemented, currently linear search).
 
 
 =head1 SEE ALSO
