@@ -103,7 +103,9 @@ modules.
 
 C<WordList> is an alternative interface for L<Games::Word::Wordlist> and
 C<Games::Word::Wordlist::*>. Its main difference is: C<WordList::*> modules are
-designed to have low startup overhead and optimized for use in CLI scripts.
+designed to have low startup overhead. This makes it more suitable for use in
+CLI scripts which often only want to pick a word from one or several lists.
+
 Words (or phrases) must be put in __DATA__ section, *sorted*, one per line. By
 putting it in the __DATA__ section, perl doesn't have to parse the list. To
 search for words or picking some random words from the list, the module need not
