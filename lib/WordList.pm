@@ -184,7 +184,7 @@ Constructor
 Call C<$code> for each word in the list. The code will receive the word as its
 first argument.
 
-=head2 pick($n = 1) => list
+=head2 $wl->pick($n = 1) => list
 
 Pick C<$n> (default: 1) random words from the list. If there are less then C<$n>
 words in the list, only that many will be returned.
@@ -193,7 +193,7 @@ The algorithm used is from perlfaq ("perldoc -q "random line""), which scans the
 whole list once. The algorithm is for returning a single entry and is modified
 to support returning multiple entries.
 
-=head2 word_exists($word) => bool
+=head2 $wl->word_exists($word) => bool
 
 Check whether C<$word> is in the list.
 
