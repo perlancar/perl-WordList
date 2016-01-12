@@ -85,6 +85,22 @@ sub word_exists {
     0;
 }
 
+sub all_words {
+    my ($self) = @_;
+
+    my $class = ref($self);
+
+    my $fh = \*{"$class\::DATA"};
+
+    seek $fh, ${"$class\::DATA_POS"}, 0;
+    my @res;
+    while (defined(my $word = <$fh>)) {
+        chomp $word;
+        push @res, $word;
+    }
+    @res;
+}
+
 1;
 # ABSTRACT: Word lists
 
@@ -133,6 +149,8 @@ The methods provided are just:
 
 - C<each_word> (run code for each entry)
 
+- C<all_words> (return all the words in a list)
+
 A couple of other functions might be added, with careful consideration.
 
 =item * Namespace is more language-neutral and not English-centric
@@ -180,6 +198,10 @@ to support returning multiple entries.
 Check whether C<$word> is in the list.
 
 Algorithm is binary search (NOTE: not yet implemented, currently linear search).
+
+=head2 $wl->all_words() => list
+
+Return all the words in a list.
 
 
 =head1 SEE ALSO
