@@ -8,7 +8,7 @@ use strict 'subs', 'vars';
 sub new {
     my $class = shift;
     my $fh = \*{"$class\::DATA"};
-    binmode $fh, ":utf8";
+    binmode $fh, "encoding(utf8)";
     unless (defined ${"$class\::DATA_POS"}) {
         ${"$class\::DATA_POS"} = tell $fh;
     }
