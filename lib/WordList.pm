@@ -7,8 +7,10 @@ use strict 'subs', 'vars';
 
 sub new {
     my $class = shift;
+    my $fh = \*{"$class\::DATA"};
+    binmode $fh, ":utf8";
     unless (defined ${"$class\::DATA_POS"}) {
-        ${"$class\::DATA_POS"} = tell *{"$class\::DATA"};
+        ${"$class\::DATA_POS"} = tell $fh;
     }
     bless [], $class;
 }
