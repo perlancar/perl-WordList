@@ -207,6 +207,9 @@ Return all the words in a list.
 
 =head1 SEE ALSO
 
+L<WordListU> is just like L<WordList> except it does not impose a sorting order.
+You can sort the wordlist in whatever order you need.
+
 L<Bencher::Scenario::GamesWordlistModules>
 
 L<Bencher::Scenario::WordListModules>
