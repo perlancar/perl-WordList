@@ -3,7 +3,8 @@ package WordList;
 # DATE
 # VERSION
 
-use base 'WordListC';
+our @ISA = qw(WordListC);
+use WordListC ();
 
 # TODO: binary search method, etc
 
