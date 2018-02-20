@@ -113,25 +113,23 @@ Use one of the C<WordList::*> modules.
 
 =head1 DESCRIPTION
 
-B<EARLY DEVELOPMENT, SPECIFICATION MIGHT STILL CHANGE CONSIDERABLY.>
-
 C<WordList::*> modules are modules that contain, well, list of words. This
 module, C<WordList>, serves as a base class and establishes convention for such
 modules.
 
 C<WordList> is an alternative interface for L<Games::Word::Wordlist> and
-C<Games::Word::Wordlist::*>. Its main difference is: C<WordList::*> modules are
-read-only/immutable and designed to have low startup overhead. This makes it
-more suitable for use in CLI scripts which often only want to pick a word from
-one or several lists.
+C<Games::Word::Wordlist::*>. Its main difference is: C<WordList::*> wordlists
+are read-only/immutable and the modules are designed to have low startup
+overhead. This makes them more suitable for use in CLI scripts which often only
+want to pick a word from one or several lists.
 
-Words (or phrases) must be put in __DATA__ section, *sorted*, one per line. By
-putting it in the __DATA__ section, perl doesn't have to parse the list. To
-search for words or picking some random words from the list, the module need not
-slurp the whole list into memory (and will not do so unless explicitly
-instructed.) Sorting must be asciibetical/by Unicode codepoint. This makes it
-more convenient to diff different versions of the module, as well as performing
-binary search.
+Words (or phrases) must be put in C<__DATA__> section, *sorted* ascibetically
+(or by Unicode code point), one per line. Putting the wordlist in the
+C<__DATA__> section relieves perl from having to parse the list during the
+loading of the module. To search for words or picking some random words from the
+list, the module also need not slurp the whole list into memory (and will not do
+so unless explicitly instructed). Sorting makes it more convenient to diff
+different versions of the module, as well as performing binary search.
 
 Since this is a new and non-backward compatible interface from
 Games::Word::Wordlist, I also make some other changes:
