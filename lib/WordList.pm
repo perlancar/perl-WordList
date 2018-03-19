@@ -137,6 +137,8 @@ performing binary search. If you have a different sort order other than
 ascibetical, you must set package variable C<$SORT> with some true value (say,
 C<frequency>).
 
+There must not be any duplicate entry in the word list.
+
 Since this is a new and non-backward compatible interface from
 Games::Word::Wordlist, I also make some other changes:
 
