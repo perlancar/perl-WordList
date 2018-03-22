@@ -19,20 +19,21 @@ our %WordList_Namespaces = (
     'WordList::MetaSyntactic'   => 1,
 );
 
-our %Non_WordList_Modules = (
-    'WordList'                  => 1,
-    'WordList::Namespace'       => 1, # us!
-    'WordList::MetaSyntactic'   => 1, # base class for WordList::MetaSyntactic::*
-);
-
 our $WordList_Namespaces_RE = join(
     '|', map {quotemeta} sort {length($b) <=> length($a)}
         keys %WordList_Namespaces);
 $WordList_Namespaces_RE =
     qr/\A(?:$WordList_Namespaces_RE)(?:::|\z)/;
 
+our %Non_WordList_Modules = (
+    'WordList'                  => 1,
+    'WordList::Namespace'       => 1, # us!
+    'WordList::MetaSyntactic'   => 1, # base class for WordList::MetaSyntactic::*
+);
+
 our %Non_WordList_Namespaces = (
-    'WordList::Role'            => 1,
+    'WordList::Role'            => 1, # addons/roles
+    'WordList::Bloom'           => 1, # to store bloom filters
 );
 
 our $Non_WordList_Namespaces_RE = join(
