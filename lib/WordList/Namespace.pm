@@ -52,6 +52,7 @@ sub is_actual_wordlist_module {
     1;
 }
 
+1;
 # ABSTRACT: Catalog of WordList::* namespaces
 
 =head1 DESCRIPTION
@@ -61,7 +62,10 @@ modules actually contain a word list and which contain something else. Initially
 all C<WordList::*> were actual wordlists, but some modules under this namespace
 end up being used for something else.
 
-=head1 SE
+=head1 FUNCTIONS
+
+=head2 is_actual_wordlist_module
+
 
 =head1 SEE ALSO
 
