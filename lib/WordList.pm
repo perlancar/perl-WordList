@@ -131,7 +131,7 @@ There must not be any duplicate entry in the word list.
 
 B<Dynamic wordlist.> A dynamic wordlist must set package variable C<$DYNAMIC> to
 true. A dynamic wordlist does not put the wordlist in the DATA section; instead,
-C<each_word()> is consulted to get the list.
+user relies on C<each_word()> or C<all_words()> to get the list.
 
 
 =head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
