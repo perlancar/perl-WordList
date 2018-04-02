@@ -14,9 +14,10 @@ our %WordList_Modules = (
 
 our %WordList_Namespaces = (
     'WordList::Char'            => 1,
-    'WordList::Phrase'          => 1,
-    'WordList::Password'        => 1,
+    'WordList::Dynamic'         => 1,
     'WordList::MetaSyntactic'   => 1,
+    'WordList::Password'        => 1,
+    'WordList::Phrase'          => 1,
 );
 
 our $WordList_Namespaces_RE = join(
@@ -27,13 +28,13 @@ $WordList_Namespaces_RE =
 
 our %Non_WordList_Modules = (
     'WordList'                  => 1,
-    'WordList::Namespace'       => 1, # us!
     'WordList::MetaSyntactic'   => 1, # base class for WordList::MetaSyntactic::*
+    'WordList::Namespace'       => 1, # us!
 );
 
 our %Non_WordList_Namespaces = (
-    'WordList::Mod'             => 1, # mods
     'WordList::Bloom'           => 1, # to store bloom filters
+    'WordList::Mod'             => 1, # mods
 );
 
 our $Non_WordList_Namespaces_RE = join(
