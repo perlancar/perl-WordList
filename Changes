@@ -1,3 +1,11 @@
+0.4.0   2018-04-02 (PERLANCAR)
+
+        - Define dynamic wordlist.
+
+        - Namespace: Add wordlist namespaces: WordList::Dynamic,
+          WordList::Number.
+
+
 0.3.2   2018-04-02 (PERLANCAR)
 
 	- No spec changes.
