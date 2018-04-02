@@ -32,7 +32,7 @@ our %Non_WordList_Modules = (
 );
 
 our %Non_WordList_Namespaces = (
-    'WordList::Role'            => 1, # addons/roles
+    'WordList::Mod'             => 1, # mods
     'WordList::Bloom'           => 1, # to store bloom filters
 );
 
