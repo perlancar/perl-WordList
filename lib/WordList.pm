@@ -114,11 +114,12 @@ are read-only/immutable and the modules are designed to have low startup
 overhead. This makes them more suitable for use in CLI scripts which often only
 want to pick a word from one or several lists.
 
-Words (or phrases) must be put in C<__DATA__> section, one per line. Putting the
-wordlist in the C<__DATA__> section relieves perl from having to parse the list
-during the loading of the module. To search for words or picking some random
-words from the list, the module also need not slurp the whole list into memory
-(and will not do so unless explicitly instructed).
+Unless you are defining a dynamic wordlist (see below), words (or phrases) must
+be put in C<__DATA__> section, one per line. Putting the wordlist in the
+C<__DATA__> section relieves perl from having to parse the list during the
+loading of the module. To search for words or picking some random words from the
+list, the module also need not slurp the whole list into memory (and will not do
+so unless explicitly instructed).
 
 You must sort your words ascibetically (or by Unicode code point). Sorting makes
 it more convenient to diff different versions of the module, as well as
@@ -127,6 +128,13 @@ ascibetical, you must set package variable C<$SORT> with some true value (say,
 C<frequency>).
 
 There must not be any duplicate entry in the word list.
+
+B<Dynamic wordlist.> A dynamic wordlist must set package variable C<$DYNAMIC> to
+true. A dynamic wordlist does not put the wordlist in the DATA section; instead,
+C<each_word()> is consulted to get the list.
+
+
+=head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
 
 Since this is a new and non-backward compatible interface from
 Games::Word::Wordlist, I also make some other changes:
