@@ -16,6 +16,7 @@ our %WordList_Namespaces = (
     'WordList::Char'            => 1,
     'WordList::Dynamic'         => 1,
     'WordList::MetaSyntactic'   => 1,
+    'WordList::Number'          => 1,
     'WordList::Password'        => 1,
     'WordList::Phrase'          => 1,
 );
