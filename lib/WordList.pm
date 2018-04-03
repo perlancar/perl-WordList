@@ -129,9 +129,13 @@ C<frequency>).
 
 There must not be any duplicate entry in the word list.
 
-B<Dynamic wordlist.> A dynamic wordlist must set package variable C<$DYNAMIC> to
-true. A dynamic wordlist does not put the wordlist in the DATA section; instead,
-user relies on C<each_word()> or C<all_words()> to get the list.
+B<Dynamic and non-deterministic wordlist.> A dynamic wordlist must set package
+variable C<$DYNAMIC> to either 1 (deterministic) or 2 (non-deterministic). A
+dynamic wordlist does not put the wordlist in the DATA section; instead, user
+relies on C<each_word()> or C<all_words()> to get the list. A deterministic
+wordlist returns the same list everytime C<each_word()> or C<all_words()> is
+called. A non-deterministic list can return a different list for a different
+C<each_word()> or C<all_words()> call.
 
 
 =head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
