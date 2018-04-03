@@ -164,21 +164,6 @@ A couple of other functions might be added, with careful consideration.
 =back
 
 
-TODOS:
-
-=over
-
-=item * Interface for random pick from a subset
-
-Pick $n words of length $L.
-
-Pick $n words matching regex $re.
-
-=item * Interface to enable faster lookup/caching
-
-=back
-
-
 =head1 METHODS
 
 =head2 new
