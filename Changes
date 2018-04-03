@@ -1,3 +1,12 @@
+0.4.1   2018-04-03 (PERLANCAR)
+
+	- Define non-deterministic wordlist (DYNAMIC=2).
+
+	- Remove todo list entries: no longer planned to provide random
+	  pick from a subset, already provide interface for faster lookup
+	  via WordList::Mod.
+
+
 0.4.0   2018-04-02 (PERLANCAR)
 
         - Define dynamic wordlist.
