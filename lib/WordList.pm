@@ -1,6 +1,8 @@
 package WordList;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 use strict 'subs', 'vars';
@@ -211,8 +213,8 @@ Usage:
 Check whether C<$word> is in the list.
 
 Algorithm in this implementation is linear scan (O(n)). Check out
-L<WordList::Role::BinarySearch> for an O(log n) implementation, or
-L<WordList::Role::Bloom> for O(1) implementation.
+L<WordListRole::BinarySearch> for an O(log n) implementation, or
+L<WordListRole::Bloom> for O(1) implementation.
 
 =head2 all_words
 
@@ -227,6 +229,8 @@ memory.
 
 =head1 SEE ALSO
 
-C<WordList::Role::*> modules.
+C<WordListRole::*> modules.
 
-Other C<WordList::*> modules.
+C<WordListMod::*> modules.
+
+C<WordList::*> modules.
