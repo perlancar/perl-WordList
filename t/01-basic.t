@@ -19,6 +19,12 @@ subtest each_word => sub {
     is_deeply(\@res, ["one","one"]);
 };
 
+subtest "first_word, next_word" => sub {
+    is_deeply($wl->first_word, "one");
+    is_deeply($wl->next_word , "two");
+    is_deeply($wl->next_word , undef);
+};
+
 subtest word_exists => sub {
     ok( $wl->word_exists("one"));
     ok( $wl->word_exists("one"));

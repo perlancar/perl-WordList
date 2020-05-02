@@ -32,6 +32,25 @@ sub each_word {
     }
 }
 
+sub next_word {
+    my $self = shift;
+
+    my $class = ref($self);
+    my $fh = \*{"$class\::DATA"};
+    my $word = <$fh>;
+    chomp $word if defined $word;
+    $word;
+}
+
+sub first_word {
+    my $self = shift;
+
+    my $class = ref($self);
+    my $fh = \*{"$class\::DATA"};
+    seek $fh, ${"$class\::DATA_POS"}, 0;
+    $self->next_word;
+}
+
 sub pick {
     my ($self, $n) = @_;
 
@@ -190,6 +209,15 @@ Call C<$code> for each word in the list. The code will receive the word as its
 first argument.
 
 If code return -2 will exit early.
+
+=head2 first_word
+
+Another way to iterate the word list is by calling L</first_word> to get the
+first word, then L</next_word> repeatedly until you get C<undef>.
+
+=head2 next_word
+
+Get the next word. See L</first_word> for more details.
 
 =head2 pick
 
