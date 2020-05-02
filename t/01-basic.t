@@ -19,9 +19,12 @@ subtest each_word => sub {
     is_deeply(\@res, ["one","one"]);
 };
 
-subtest "first_word, next_word" => sub {
+subtest "first_word, next_word, reset_iterator" => sub {
     is_deeply($wl->first_word, "one");
     is_deeply($wl->next_word , "two");
+    $wl->reset_iterator;
+    is_deeply($wl->next_word, "one");
+    is_deeply($wl->next_word, "two");
     is_deeply($wl->next_word , undef);
 };
 

@@ -43,6 +43,8 @@ sub next_word {
 }
 
 sub reset_iterator {
+    my $self = shift;
+
     my $class = ref($self);
     my $fh = \*{"$class\::DATA"};
     seek $fh, ${"$class\::DATA_POS"}, 0;
@@ -50,6 +52,7 @@ sub reset_iterator {
 
 sub first_word {
     my $self = shift;
+
     $self->reset_iterator;
     $self->next_word;
 }
