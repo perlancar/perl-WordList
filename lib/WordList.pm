@@ -42,12 +42,15 @@ sub next_word {
     $word;
 }
 
-sub first_word {
-    my $self = shift;
-
+sub reset_iterator {
     my $class = ref($self);
     my $fh = \*{"$class\::DATA"};
     seek $fh, ${"$class\::DATA_POS"}, 0;
+}
+
+sub first_word {
+    my $self = shift;
+    $self->reset_iterator;
     $self->next_word;
 }
 
@@ -218,6 +221,11 @@ first word, then L</next_word> repeatedly until you get C<undef>.
 =head2 next_word
 
 Get the next word. See L</first_word> for more details.
+
+=head2 reset_iterator
+
+Reset iterator. Basically L</first_word> is equivalent to C<reset_iterator> +
+L</next_word>.
 
 =head2 pick
 
