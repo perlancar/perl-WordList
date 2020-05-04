@@ -19,7 +19,19 @@ sub new {
     unless (defined ${"$class\::DATA_POS"}) {
         ${"$class\::DATA_POS"} = tell $fh;
     }
-    bless [], $class;
+
+    # check for known and required parameters
+    my %params = @_;
+    my $param_spec = \%{"$class\::PARAMS"};
+    for my $param_name (keys %params) {
+        die "Unknown parameter '$param_name'" unless $param_spec->{$param_name};
+    }
+    for my $param_name (keys %$param_spec) {
+        die "Missing required parameter '$param_name'"
+            if $param_spec->{$param_name}{req} && !exists($params{$param_name});
+    }
+
+    bless [undef, undef, \%params], $class;
 }
 
 sub each_word {
@@ -170,7 +182,15 @@ C<each_word()> or C<all_words()> is called. A non-deterministic list can return
 a different list for a different C<each_word()> or C<all_words()> call. See
 L<WordListRole::Dynamic::FirstNextResetFromEach> and
 L<WordListRole::Dynamic::EachFromFirstNextReset> if you want to write a dynamic
-wordlist module.
+wordlist module. It is possible for a dynamic list to return unordered or
+duplicate entries, but it is not encouraged.
+
+B<Parameterized wordlist.> When instantiating a wordlist class instance, user
+can pass a list of key-value pairs as parameters. Normally only a dynamic
+wordlist would accept parameters. Parameters are defined in the C<%PARAMS>
+package variable. It is a hash of parameter names as keys and parameter
+specification as values. Parameter specification follows function argument
+metadata specified in L<Rinci::function>.
 
 
 =head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
@@ -281,3 +301,5 @@ C<WordListRole::*> modules.
 C<WordListMod::*> modules.
 
 C<WordList::*> modules.
+
+L<Rinci>.

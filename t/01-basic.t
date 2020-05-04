@@ -8,14 +8,17 @@ use Test::More 0.98;
 use WordList::Test::OneTwo;
 
 my @wordlists = (
-    "WordList::Test::OneTwo",
-    "WordList::Test::Dynamic::OneTwo_Each",
-    "WordList::Test::Dynamic::OneTwo_FirstNextReset",
+    "WordList::Test::OneTwo" => {},
+    "WordList::Test::Dynamic::OneTwo_Each" => {},
+    "WordList::Test::Dynamic::OneTwo_FirstNextReset" => {},
+    "WordList::Test::Dynamic::OneTwo_EachParam" => {
+        params => {foo=>1},
+    },
 );
 
-for my $wordlist (@wordlists) {
+while (my ($wordlist, $wordlist_data) = splice @wordlists, 0, 2) {
     eval "require $wordlist";
-    my $wl_obj = $wordlist->new;
+    my $wl_obj = $wordlist->new(%{ $wordlist_data->{params} // {} });
 
     subtest "each_word ($wordlist)" => sub {
         my @res;
