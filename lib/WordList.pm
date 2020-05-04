@@ -7,6 +7,11 @@ package WordList;
 
 use strict 'subs', 'vars';
 
+# IFUNBUILT
+use Role::Tiny::With;
+with 'WordListRole::WordList';
+# END IFUNBUILT
+
 sub new {
     my $class = shift;
     my $fh = \*{"$class\::DATA"};
