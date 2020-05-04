@@ -1,3 +1,10 @@
+0.5.3   2020-05-04  Released-By: PERLANCAR; Urgency: medium
+
+	- Add WordListRole::WordList, WordListRole::FirstNextResetFromEach, WordListRole::EachFromFirstNextReset.
+
+        - Add tests for dynamic wordlist.
+
+
 0.5.2   2020-05-02  Released-By: PERLANCAR; Urgency: medium
 
 	- Add reset_iterator().

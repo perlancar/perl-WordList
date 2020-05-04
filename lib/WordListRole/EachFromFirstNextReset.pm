@@ -32,6 +32,8 @@ sub each_word {
 1;
 # ABSTRACT: Provide each_word(); relies on first_word(), next_word(), reset_iterator()
 
+=for Pod::Coverage .+
+
 =head1 DESCRIPTION
 
 This role can be used if you want to construct a dynamic wordlist module by

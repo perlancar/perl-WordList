@@ -39,6 +39,8 @@ sub reset_iterator {
 1;
 # ABSTRACT: Provide first_word(), next_word(), reset_iterator(); relies on each_word()
 
+=for Pod::Coverage .+
+
 =head1 DESCRIPTION
 
 This role can be used if you want to construct a dynamic wordlist module by
