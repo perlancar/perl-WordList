@@ -31,7 +31,13 @@ sub new {
             if $param_spec->{$param_name}{req} && !exists($params{$param_name});
     }
 
-    bless [undef, undef, \%params], $class;
+    bless {
+        params => \%params,
+
+        # we store this because applying roles to object will rebless the object
+        # into some other package.
+        orig_class => $class,
+    }, $class;
 }
 
 sub each_word {
