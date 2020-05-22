@@ -1,3 +1,8 @@
+0.6.1   2020-05-22  Released-By: PERLANCAR; Urgency: medium
+
+	- Specify that user can now instruct pick() to allow duplicates.
+
+
 0.6.0   2020-05-04  Released-By: PERLANCAR; Urgency: medium
 
 	- Introduce parameterized wordlist; check for known and required
