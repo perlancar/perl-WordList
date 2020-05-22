@@ -75,10 +75,12 @@ sub first_word {
 }
 
 sub pick {
-    my ($self, $n) = @_;
+    my ($self, $n, $allow_duplicates) = @_;
 
     $n = 1 if !defined $n;
     die "Please specify a positive number of words to pick" if $n < 1;
+    die "This implementation of pick() does not produce duplicates"
+        if $allow_duplicates;
 
     if ($n == 1) {
         my $i = 0;
@@ -262,10 +264,11 @@ L</next_word>.
 
 Usage:
 
- $wl->pick($n = 1) => list
+ $wl->pick([ $n , [ $allow_duplicates ] ]) => list
 
-Pick C<$n> (default: 1) random word(s) from the list. If there are less then
-C<$n> words in the list, only that many will be returned.
+Pick C<$n> (default: 1) random word(s) from the list, without duplicates (unless
+C<$allow_duplicates> is set to true). If there are less then C<$n> words in the
+list and duplicates are not allowed, only that many will be returned.
 
 The algorithm used is from perlfaq ("perldoc -q "random line""), which scans the
 whole list once (a.k.a. each_word() once). The algorithm is for returning a
