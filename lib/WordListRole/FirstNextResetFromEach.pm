@@ -19,21 +19,21 @@ sub first_word {
 sub next_word {
     my $self = shift;
 
-    unless ($self->[1]) {
+    unless ($self->{_all_words}) {
         my @wordlist;
         $self->each_word(sub { push @wordlist, $_[0] });
-        $self->[1] = \@wordlist;
+        $self->{_all_words} = \@wordlist;
     }
-    $self->[0] = 0 unless defined $self->[0];
+    $self->{_iterator_idx} = 0 unless defined $self->{_iterator_idx};
 
-    return undef if $self->[0] > $#{ $self->[1] };
-    $self->[1][ $self->[0]++ ];
+    return undef if $self->{_iterator_idx} > $#{ $self->{_all_words} };
+    $self->{_all_words}[ $self->{_iterator_idx}++ ];
 }
 
 sub reset_iterator {
     my $self = shift;
 
-    $self->[0] = 0;
+    $self->{_iterator_idx} = 0;
 }
 
 1;

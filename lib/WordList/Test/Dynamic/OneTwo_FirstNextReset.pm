@@ -17,7 +17,7 @@ our $DYNAMIC = 1;
 
 sub reset_iterator {
     my $self = shift;
-    $self->[0] = 0;
+    $self->{_iterator_idx} = 0;
 }
 
 sub first_word {
@@ -28,11 +28,11 @@ sub first_word {
 
 sub next_word {
     my $self = shift;
-    $self->[0] = 0 unless defined $self->[0];
+    $self->{_iterator_idx} = 0 unless defined $self->{_iterator_idx};
 
-    $self->[0]++;
-    if    ($self->[0] == 1) { return "one" }
-    elsif ($self->[0] == 2) { return "two" }
+    $self->{_iterator_idx}++;
+    if    ($self->{_iterator_idx} == 1) { return "one" }
+    elsif ($self->{_iterator_idx} == 2) { return "two" }
     else { return undef }
 }
 
