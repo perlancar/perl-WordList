@@ -305,8 +305,6 @@ memory.
 
 C<WordListRole::*> modules.
 
-C<WordListMod::*> modules.
-
 C<WordList::*> modules.
 
 L<Rinci>.
