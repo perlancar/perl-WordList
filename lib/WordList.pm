@@ -43,13 +43,10 @@ sub new {
 sub each_word {
     my ($self, $code) = @_;
 
-    my $class = $self->{orig_class} || ref($self);
-
-    my $fh = \*{"$class\::DATA"};
-
-    seek $fh, ${"$class\::DATA_POS"}, 0;
-    while (defined(my $word = <$fh>)) {
-        chomp $word;
+    my $i = 0;
+    while (1) {
+        my $word = $i++ ? $self->next_word : $self->first_word;
+        last unless defined $word;
         my $res = $code->($word);
         last if defined $res && $res == -2;
     }
