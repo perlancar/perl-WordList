@@ -1,3 +1,9 @@
+0.7.3   2020-05-23  Released-By: PERLANCAR; Urgency: medium
+
+	- Implement each_word() in terms of first_word() and next_word() to
+	  reduce code duplication.
+
+
 0.7.2   2020-05-23  Released-By: PERLANCAR; Urgency: medium
 
 	- No spec changes.
