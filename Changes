@@ -1,3 +1,17 @@
+0.7.1   2020-05-23  Released-By: PERLANCAR; Urgency: medium
+
+	- No spec changes.
+
+        - Use value from orig_class attribute to keep working when class/object
+          is mixed with roles into another package.
+
+	- [doc] WordListRole::WordList: Document the required methods.
+
+	- [doc] Add FAQ item about pick() returning '1'.
+
+	- [doc] Remove mention of WordListMod::* modules.
+
+
 0.7.0   2020-05-22  Released-By: PERLANCAR; Urgency: medium; Backward-Compatible: no
 
 	- No spec changes.
