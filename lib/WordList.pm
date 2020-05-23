@@ -16,8 +16,9 @@ sub new {
     my $class = shift;
     my $fh = \*{"$class\::DATA"};
     binmode $fh, "encoding(utf8)";
+    my $fh_orig_pos = tell $fh;
     unless (defined ${"$class\::DATA_POS"}) {
-        ${"$class\::DATA_POS"} = tell $fh;
+        ${"$class\::DATA_POS"} = $fh_orig_pos,
     }
 
     # check for known and required parameters
@@ -37,6 +38,10 @@ sub new {
         # we store this because applying roles to object will rebless the object
         # into some other package.
         orig_class => $class,
+
+        fh => $fh,
+        fh_orig_pos => $fh_orig_pos,
+        fh_seekable => 1,
     }, $class;
 }
 
@@ -55,8 +60,7 @@ sub each_word {
 sub next_word {
     my $self = shift;
 
-    my $class = $self->{orig_class} || ref($self);
-    my $fh = \*{"$class\::DATA"};
+    my $fh = $self->{fh};
     my $word = <$fh>;
     chomp $word if defined $word;
     $word;
@@ -65,9 +69,10 @@ sub next_word {
 sub reset_iterator {
     my $self = shift;
 
-    my $class = $self->{orig_class} || ref($self);
-    my $fh = \*{"$class\::DATA"};
-    seek $fh, ${"$class\::DATA_POS"}, 0;
+    die "Cannot reset iterator, filehandle not seekable"
+        unless $self->{fh_seekable};
+    my $fh = $self->{fh};
+    seek $fh, $self->{fh_orig_pos}, 0;
 }
 
 sub first_word {
