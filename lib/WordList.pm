@@ -268,7 +268,12 @@ L</next_word>.
 
 Usage:
 
- $wl->pick([ $n , [ $allow_duplicates ] ]) => list
+ @words = $wl->pick([ $num=1 [ , $allow_duplicates=0 ] ])
+
+Examples:
+
+ ($word) = $wl->pick;
+ @words  = $wl->pick(3);
 
 Pick C<$n> (default: 1) random word(s) from the list, without duplicates (unless
 C<$allow_duplicates> is set to true). If there are less then C<$n> words in the
@@ -299,6 +304,22 @@ Usage:
 Return all the words in a list, in order. Note that if wordlist is very large
 you might want to use L</"each_word"> instead to avoid slurping all words into
 memory.
+
+
+=head1 FAQ
+
+=head2 Why does pick() return "1"?
+
+You probably write this:
+
+ $word = $wl->pick;
+
+instead of this:
+
+ ($word) = $wl->pick;
+
+C<pick()> returns a list and in scalar context it returns the number of elements
+in the list which is 1. This is a common context trap in Perl.
 
 
 =head1 SEE ALSO
