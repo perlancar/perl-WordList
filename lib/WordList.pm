@@ -43,7 +43,7 @@ sub new {
 sub each_word {
     my ($self, $code) = @_;
 
-    my $class = ref($self);
+    my $class = $self->{orig_class} || ref($self);
 
     my $fh = \*{"$class\::DATA"};
 
@@ -58,7 +58,7 @@ sub each_word {
 sub next_word {
     my $self = shift;
 
-    my $class = ref($self);
+    my $class = $self->{orig_class} || ref($self);
     my $fh = \*{"$class\::DATA"};
     my $word = <$fh>;
     chomp $word if defined $word;
@@ -68,7 +68,7 @@ sub next_word {
 sub reset_iterator {
     my $self = shift;
 
-    my $class = ref($self);
+    my $class = $self->{orig_class} || ref($self);
     my $fh = \*{"$class\::DATA"};
     seek $fh, ${"$class\::DATA_POS"}, 0;
 }
