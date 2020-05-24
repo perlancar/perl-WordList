@@ -314,12 +314,13 @@ memory.
 =head1 SUBCLASSING OR CREATING ROLES
 
 If you want to get the word list from another filehandle source, e.g. a gzipped
-file, you just need to override C<first_word()> (and possible
-C<reset_iterator()>). Your C<first_word()> needs to set the 'fh' attribute to
-the filehandle. C<next_word()> simply just reads another line from the
-filehandle. C<each_word()> is implemented in terms of C<first_word()> and
-C<next_word()>, and C<word_exists()>, C<pick()>, and C<all_words()> are
-implemented in terms of C<each_word()>.
+file, you just need to override C<reset_iterator()>. Your C<reset_iterator()>
+needs to set the 'fh' attribute to the filehandle. The default C<first_word()>
+calls C<reset_iterator()> and reads a line from the filehandle. The default
+C<next_word()> just reads another line from the filehandle. C<each_word()> is
+implemented in terms of C<first_word()> and C<next_word()>, and
+C<word_exists()>, C<pick()>, and C<all_words()> are implemented in terms of
+C<each_word()>.
 
 
 =head1 FAQ
