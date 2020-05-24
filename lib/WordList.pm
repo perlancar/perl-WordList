@@ -160,11 +160,12 @@ C<WordList::*> modules are modules that contain, well, list of words. This
 module, C<WordList>, serves as a base class and establishes convention for such
 modules.
 
-C<WordList> is an alternative interface for L<Games::Word::Wordlist> and
+C<WordList> is an alternative for L<Games::Word::Wordlist> and
 C<Games::Word::Wordlist::*>. Its main difference is: C<WordList::*> wordlists
 are read-only/immutable and the modules are designed to have low startup
 overhead. This makes them more suitable for use in CLI scripts which often only
-want to pick a word from one or several lists.
+want to pick a word from one or several lists. See L</"DIFFERENCES WITH
+GAMES::WORD::WORDLIST"> for more details.
 
 Unless you are defining a dynamic wordlist (see below), words (or phrases) must
 be put in C<__DATA__> section, one per line. Putting the wordlist in the
@@ -203,8 +204,8 @@ metadata specified in L<Rinci::function>.
 
 =head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
 
-Since this is a new and non-backward compatible interface from
-Games::Word::Wordlist, I also make some other changes:
+Since this is a non-compatible interface from Games::Word::Wordlist, I also make
+some other changes:
 
 =over
 
@@ -212,11 +213,19 @@ Games::Word::Wordlist, I also make some other changes:
 
 Because obviously word lists are not only useful for games.
 
+=item * Namespace is more language-neutral and not English-centric
+
+English wordlists are put under C<WordList::EN::*>. Other languages have their
+own subnamespaces, e.g. C<WordList::FR::*> or C<WordList::ID::*>. Aside from
+language subnamespaces, there are also other subnamespaces:
+C<WordList::Phrase::$LANG::*>, C<WordList::Password::*>, C<WordList::Domain::*>,
+C<WordList::HTTP::*>, etc.
+
 =item * Interface is simpler
 
 This is partly due to the list being read-only. The methods provided are just:
 
-- C<pick> (pick one or several random entries)
+- C<pick> (pick one or several random entries, without duplicates or with)
 
 - C<word_exists> (check whether a word is in the list)
 
@@ -226,7 +235,14 @@ This is partly due to the list being read-only. The methods provided are just:
 
 A couple of other functions might be added, with careful consideration.
 
-=item * Namespace is more language-neutral and not English-centric
+=item * More extensions
+
+Some roles, subclasses, or alternate implementations are provided. For example,
+since most wordlist are alphabetically sorted, a binary search can be performed
+in C<word_exists()>. There is a role, L<WordListRole::BinarySearch>, that does
+that and can be mixed in. An even faster version of C<word_exists()> using bloom
+filter is offered by L<WordListRole::Bloom>. A faster version of pick() that
+does random seeking is offered by L<WordListRole::RandomSeekPick>.
 
 =back
 
@@ -237,7 +253,7 @@ A couple of other functions might be added, with careful consideration.
 
 Usage:
 
- $wl = WordList::Module->new => obj
+ $wl = WordList::Module->new([ %params ]);
 
 Constructor.
 
@@ -306,6 +322,17 @@ Usage:
 Return all the words in a list, in order. Note that if wordlist is very large
 you might want to use L</"each_word"> instead to avoid slurping all words into
 memory.
+
+
+=head1 SUBCLASSING OR CREATING ROLES
+
+If you want to get the word list from another filehandle source, e.g. a gzipped
+file, you just need to override C<first_word()> (and possible
+C<reset_iterator()>). Your C<first_word()> needs to set the 'fh' attribute to
+the filehandle. C<next_word()> simply just reads another line from the
+filehandle. C<each_word()> is implemented in terms of C<first_word()> and
+C<next_word()>, and C<word_exists()>, C<pick()>, and C<all_words()> are
+implemented in terms of C<each_word()>.
 
 
 =head1 FAQ
