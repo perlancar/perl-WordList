@@ -1,10 +1,23 @@
+0.7.5   2020-05-24  Released-By: PERLANCAR; Urgency: medium
+
+	- No spec changes.
+
+	- Split new() to WordListBase.
+
+	- [doc] Add more docs.
+
+
 0.7.4   2020-05-24  Released-By: PERLANCAR; Urgency: medium
+
+	- No spec changes.
 
 	- Improve reusability: abstract filehandle and original position in
 	  'fh' and 'fh_orig_pos' object attribute.
 
 
 0.7.3   2020-05-23  Released-By: PERLANCAR; Urgency: medium
+
+	- No spec changes.
 
 	- Implement each_word() in terms of first_word() and next_word() to
 	  reduce code duplication.
