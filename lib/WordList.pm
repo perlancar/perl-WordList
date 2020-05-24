@@ -18,7 +18,7 @@ sub new {
     binmode $fh, "encoding(utf8)";
     my $fh_orig_pos = tell $fh;
     unless (defined ${"$class\::DATA_POS"}) {
-        ${"$class\::DATA_POS"} = $fh_orig_pos,
+        ${"$class\::DATA_POS"} = $fh_orig_pos;
     }
 
     # check for known and required parameters

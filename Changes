@@ -1,3 +1,9 @@
+0.7.4   2020-05-24  Released-By: PERLANCAR; Urgency: medium
+
+	- Improve reusability: abstract filehandle and original position in
+	  'fh' and 'fh_orig_pos' object attribute.
+
+
 0.7.3   2020-05-23  Released-By: PERLANCAR; Urgency: medium
 
 	- Implement each_word() in terms of first_word() and next_word() to
