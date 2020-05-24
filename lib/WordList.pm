@@ -7,6 +7,9 @@ package WordList;
 
 use strict 'subs', 'vars';
 
+use WordListBase ();
+our @ISA = qw(WordListBase);
+
 # IFUNBUILT
 use Role::Tiny::With;
 with 'WordListRole::WordList';
@@ -14,6 +17,8 @@ with 'WordListRole::WordList';
 
 sub new {
     my $class = shift;
+    my $self = $class->SUPER::new(@_);
+
     my $fh = \*{"$class\::DATA"};
     binmode $fh, "encoding(utf8)";
     my $fh_orig_pos = tell $fh;
@@ -21,28 +26,10 @@ sub new {
         ${"$class\::DATA_POS"} = $fh_orig_pos;
     }
 
-    # check for known and required parameters
-    my %params = @_;
-    my $param_spec = \%{"$class\::PARAMS"};
-    for my $param_name (keys %params) {
-        die "Unknown parameter '$param_name'" unless $param_spec->{$param_name};
-    }
-    for my $param_name (keys %$param_spec) {
-        die "Missing required parameter '$param_name'"
-            if $param_spec->{$param_name}{req} && !exists($params{$param_name});
-    }
-
-    bless {
-        params => \%params,
-
-        # we store this because applying roles to object will rebless the object
-        # into some other package.
-        orig_class => $class,
-
-        fh => $fh,
-        fh_orig_pos => $fh_orig_pos,
-        fh_seekable => 1,
-    }, $class;
+    $self->{fh} = $fh;
+    $self->{fh_orig_pos} = $fh_orig_pos;
+    $self->{fh_seekable} = 1;
+    $self;
 }
 
 sub each_word {
