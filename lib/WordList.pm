@@ -134,7 +134,7 @@ sub all_words {
 }
 
 1;
-# ABSTRACT: Word lists
+# ABSTRACT: Specification and base class for WordList::*, modules that contain word list
 
 =head1 SYNOPSIS
 
