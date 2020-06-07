@@ -19,6 +19,10 @@ sub new {
     for my $param_name (keys %$param_spec) {
         die "Missing required parameter '$param_name'"
             if $param_spec->{$param_name}{req} && !exists($params{$param_name});
+        # apply default
+        $params{$param_name} = $param_spec->{$param_name}{default}
+            if !defined($params{$param_name}) &&
+            exists $param_spec->{$param_name}{default};
     }
 
     bless {
