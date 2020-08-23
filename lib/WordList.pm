@@ -188,6 +188,19 @@ package variable. It is a hash of parameter names as keys and parameter
 specification as values. Parameter specification follows function argument
 metadata specified in L<Rinci::function>.
 
+B<Examples.> Examples can be specified in C<@EXAMPLES> package variable. The
+structure is similar to L<Rinci function|Rinci::function>'s C<examples>
+property. For example:
+
+ # in lib/WordList/Test/Dynamic/RandomWord/1000.pm
+
+ @EXAMPLES = (
+     {
+         summary => '1000 random words, each 10 to 15 characters long',
+         args => {min_len=>10, max_len=>15},
+     }
+ );
+
 
 =head1 DIFFERENCES WITH GAMES::WORD::WORDLIST
 
