@@ -354,8 +354,11 @@ in the list which is 1. This is a common context trap in Perl.
 
 =head1 SEE ALSO
 
+Related specifications: L<Rinci>, L<DefHash>.
+
 C<WordListRole::*> modules.
 
 C<WordList::*> modules.
 
-L<Rinci>.
+CLI's are provided in L<App::wordlist> (L<wordlist>), L<App::WordListUtils>
+(e.g. L<list-wordlist-modules>, etc).
