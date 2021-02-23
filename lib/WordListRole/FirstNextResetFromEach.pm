@@ -46,3 +46,22 @@ sub reset_iterator {
 This role can be used if you want to construct a dynamic wordlist module by
 providing C<each_word()>. This role will provide the C<first_word()>,
 C<next_word()>, C<reset_iterator()> that uses C<each_word()>.
+
+
+=head1 REQUIRED METHODS
+
+=head2 each_word
+
+
+=head1 PROVIDED METHODS
+
+=head2 first_word
+
+=head2 next_word
+
+=head2 reset_iterator
+
+
+=head1 SEE ALSO
+
+L<WordListRole::EachFromFirstNextReset>
