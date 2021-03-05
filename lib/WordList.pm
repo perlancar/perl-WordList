@@ -176,10 +176,10 @@ relies on C<first_word()> + C<next_word()>, or C<each_word()>, or C<all_words()>
 to get the list. A deterministic wordlist returns the same list everytime
 C<each_word()> or C<all_words()> is called. A non-deterministic list can return
 a different list for a different C<each_word()> or C<all_words()> call. See
-L<WordListRole::Dynamic::FirstNextResetFromEach> and
-L<WordListRole::Dynamic::EachFromFirstNextReset> if you want to write a dynamic
-wordlist module. It is possible for a dynamic list to return unordered or
-duplicate entries, but it is not encouraged.
+L<WordListRole::FirstNextResetFromEach>,
+L<WordListRole::EachFromFirstNextReset>, L<WordListRole::FromArray> if you want
+to write a dynamic wordlist module. It is possible for a dynamic list to return
+unordered or duplicate entries, but it is not encouraged.
 
 B<Parameterized wordlist.> When instantiating a wordlist class instance, user
 can pass a list of key-value pairs as parameters. Normally only a dynamic
