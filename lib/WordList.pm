@@ -354,7 +354,9 @@ in the list which is 1. This is a common context trap in Perl.
 
 =head1 SEE ALSO
 
-Related specifications: L<Rinci>, L<DefHash>.
+Related projects: L<ArrayData>, L<HashData>, L<TableData> are newer projects
+inspired by WordList. I plan to publish newer wordlists as C<ArrayData::*>
+modules. But WordList will still exist and stabilize its API.
 
 C<WordListRole::*> modules.
 
