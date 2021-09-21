@@ -101,6 +101,7 @@ sub pick {
                 # algorithm from Learning Perl, slightly modified
                 rand($i) < @words and splice @words, rand(@words), 1, $_[0];
             }
+            0;
         }
     );
     @words;
