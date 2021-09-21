@@ -70,7 +70,7 @@ sub first_word {
 }
 
 sub pick {
-    my ($self, $n, $allow_duplicates) = @_; # but this implementaiton never produces duplicates
+    my ($self, $n, $allow_duplicates) = @_; # but this implementation never produces duplicates
 
     $n = 1 if !defined $n;
     die "Please specify a positive number of words to pick" if $n < 1;
