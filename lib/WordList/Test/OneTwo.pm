@@ -1,10 +1,15 @@
 package WordList::Test::OneTwo;
 
-# DATE
-# VERSION
+use strict;
+use warnings;
 
 use WordList;
 our @ISA = qw(WordList);
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 # STATS
 

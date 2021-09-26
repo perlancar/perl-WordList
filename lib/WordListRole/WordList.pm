@@ -1,10 +1,5 @@
 package WordListRole::WordList;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use Role::Tiny;
 
 requires 'new';
@@ -15,6 +10,11 @@ requires 'reset_iterator';
 requires 'pick';
 requires 'word_exists';
 requires 'all_words';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 1;
 # ABSTRACT: The WordList methods

@@ -1,10 +1,5 @@
 package WordList::Test::Dynamic::OneTwo_Each;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict;
 
 use WordList;
@@ -12,6 +7,11 @@ our @ISA = qw(WordList);
 
 use Role::Tiny::With;
 with 'WordListRole::FirstNextResetFromEach';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our $DYNAMIC = 1;
 
@@ -22,7 +22,7 @@ sub each_word {
 
     for ("one", "two") {
         my $ret = $code->($_);
-        return undef if defined $ret && $ret == -2;
+        return undef if defined $ret && $ret == -2; ## no critic: Subroutines::ProhibitExplicitReturnUndef
     }
 }
 

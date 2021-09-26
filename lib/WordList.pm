@@ -1,10 +1,5 @@
 package WordList;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict 'subs', 'vars';
 
 use WordListBase ();
@@ -14,6 +9,11 @@ our @ISA = qw(WordListBase);
 use Role::Tiny::With;
 with 'WordListRole::WordList';
 # END IFUNBUILT
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 sub new {
     my $class = shift;
@@ -83,6 +83,7 @@ sub pick {
             sub {
                 $i++;
                 $word = $_[0] if rand($i) < 1;
+                1;
             }
         );
         return $word;
@@ -101,7 +102,7 @@ sub pick {
                 # algorithm from Learning Perl, slightly modified
                 rand($i) < @words and splice @words, rand(@words), 1, $_[0];
             }
-            0;
+            1;
         }
     );
     @words;

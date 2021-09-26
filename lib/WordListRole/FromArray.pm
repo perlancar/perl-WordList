@@ -1,15 +1,15 @@
 package WordListRole::FromArray;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use Role::Tiny;
 use Role::Tiny::With;
 
 with 'WordListRole::FirstNextResetFromEach';
 requires '_array';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 sub each_word {
     my ($self, $code) = @_;

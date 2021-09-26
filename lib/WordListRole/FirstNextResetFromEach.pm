@@ -1,13 +1,13 @@
 package WordListRole::FirstNextResetFromEach;
 
+use Role::Tiny;
+
+requires 'each_word';
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use Role::Tiny;
-
-requires 'each_word';
 
 sub first_word {
     my $self = shift;
@@ -26,7 +26,7 @@ sub next_word {
     }
     $self->{_iterator_idx} = 0 unless defined $self->{_iterator_idx};
 
-    return undef if $self->{_iterator_idx} > $#{ $self->{_all_words} };
+    return undef if $self->{_iterator_idx} > $#{ $self->{_all_words} }; ## no critic: Subroutines::ProhibitExplicitReturnUndef
     $self->{_all_words}[ $self->{_iterator_idx}++ ];
 }
 

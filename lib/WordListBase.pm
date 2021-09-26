@@ -1,11 +1,11 @@
 package WordListBase;
 
+use strict 'subs', 'vars';
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use strict 'subs', 'vars';
 
 sub new {
     my $class = shift;

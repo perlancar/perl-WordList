@@ -1,10 +1,5 @@
 package WordList::Test::Dynamic::OneTwo_FirstNextReset;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict;
 
 use WordList;
@@ -12,6 +7,11 @@ our @ISA = qw(WordList);
 
 use Role::Tiny::With;
 with 'WordListRole::EachFromFirstNextReset';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our $DYNAMIC = 1;
 
@@ -33,7 +33,7 @@ sub next_word {
     $self->{_iterator_idx}++;
     if    ($self->{_iterator_idx} == 1) { return "one" }
     elsif ($self->{_iterator_idx} == 2) { return "two" }
-    else { return undef }
+    else { return undef } ## no critic: Subroutines::ProhibitExplicitReturnUndef
 }
 
 # STATS

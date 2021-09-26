@@ -1,11 +1,11 @@
 package WordListRole::Test;
 
+use Role::Tiny;
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use Role::Tiny;
 
 sub test1 {}
 

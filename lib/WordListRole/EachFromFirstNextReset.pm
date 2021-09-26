@@ -1,15 +1,15 @@
 package WordListRole::EachFromFirstNextReset;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use Role::Tiny;
 
 requires 'first_word';
 requires 'next_word';
 requires 'reset_iterator';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 sub each_word {
     no warnings 'numeric';
@@ -18,14 +18,14 @@ sub each_word {
 
     $self->reset_iterator;
     my $word = $self->first_word;
-    return undef unless defined $word;
+    return undef unless defined $word; ## no critic: Subroutines::ProhibitExplicitReturnUndef
     my $ret = $code->($word);
-    return undef if defined $ret && $ret == -2;
+    return undef if defined $ret && $ret == -2; ## no critic: Subroutines::ProhibitExplicitReturnUndef
     while (1) {
         $word = $self->next_word;
-        return undef unless defined $word;
+        return undef unless defined $word; ## no critic: Subroutines::ProhibitExplicitReturnUndef
         $ret = $code->($word);
-        return undef if defined $ret && $ret == -2;
+        return undef if defined $ret && $ret == -2; ## no critic: Subroutines::ProhibitExplicitReturnUndef
     }
 }
 

@@ -1,10 +1,5 @@
 package WordList::Test::Dynamic::OneTwo_EachParam;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict;
 
 use WordList::Test::Dynamic::OneTwo_Each;
@@ -12,6 +7,11 @@ our @ISA = qw(WordList::Test::Dynamic::OneTwo_Each);
 
 use Role::Tiny::With;
 with 'WordListRole::FirstNextResetFromEach';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our $DYNAMIC = 1;
 
